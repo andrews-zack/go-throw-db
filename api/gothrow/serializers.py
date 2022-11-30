@@ -18,7 +18,7 @@ class RoundsSerializer(serializers.ModelSerializer):
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
-        fields = ["course_name", "holes"]
+        fields = "__all__"
 
 
 class HoleSerializer(serializers.ModelSerializer):
