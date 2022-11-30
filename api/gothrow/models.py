@@ -17,6 +17,9 @@ class Course(models.Model):
     course_lat = models.DecimalField(max_digits=7, decimal_places=5, null=False, blank=True)
     course_long = models.DecimalField(max_digits=8, decimal_places=5, null=False, blank=True)
 
+    def __str__(self):
+        return self.course_name
+
 class Hole(models.Model):
     course = models.ForeignKey("Course", on_delete=models.PROTECT)
     hole_num = models.IntegerField(null=False, blank=True)
@@ -24,6 +27,9 @@ class Hole(models.Model):
     length = models.IntegerField(null=False, blank=True)
     hole_lat = models.DecimalField(max_digits=7, decimal_places=5, null=False, blank=True)
     hole_long = models.DecimalField(max_digits=8, decimal_places=5, null=False, blank=True)
+
+    def __str__(self):
+        return f"{self.course} { self.hole_num}"
 
 class Scores(models.Model):
     score = models.IntegerField(null=False, blank=True)
