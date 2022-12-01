@@ -26,4 +26,4 @@ class HoleSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Hole
-        fields = ["course", "hole_num", "par", "length"]
+        fields = ["course", "hole_num", "par", "length", "hole_lat", "hole_long",]
