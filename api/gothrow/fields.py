@@ -15,4 +15,4 @@ class HoleListingField(serializers.RelatedField):
         return instance.hole_num
 
     def to_internal_value(self, data):
-        return Course.objects.get(hole_num=data)
+        return Hole.objects.get(hole_num=data)

@@ -138,3 +138,7 @@ CSRF_TRUSTED_ORIGINS = ['https://*.gitpod.io']
 CORS_ALLOWED_ORIGIN_REGEXES = [
         r"^https://.*\.gitpod\.io$",
     ]
+
+REST_FRAMEWORK = {
+    'COERCE_DECIMAL_TO_STRING': False,
+}

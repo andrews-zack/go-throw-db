@@ -28,8 +28,11 @@ class Hole(models.Model):
     hole_lat = models.DecimalField(max_digits=7, decimal_places=5, null=False, blank=True)
     hole_long = models.DecimalField(max_digits=8, decimal_places=5, null=False, blank=True)
 
-    def __str__(self):
-        return f"{self.course} { self.hole_num}"
+    # def __str__(self):
+    #     return {
+    #         self.course,
+    #         self.hole_num,
+    #     }
 
 class Scores(models.Model):
     score = models.IntegerField(null=False, blank=True)
@@ -46,3 +49,6 @@ class UserScores(models.Model):
     user = models.ForeignKey("CustomUser", on_delete=models.PROTECT)
     scores = models.ForeignKey("Scores", on_delete=models.PROTECT)
     
+class CourseHole(models.Model):
+    course = models.ForeignKey("Course", on_delete=models.PROTECT)
+    hole = models.ForeignKey("Hole", on_delete=models.PROTECT)
