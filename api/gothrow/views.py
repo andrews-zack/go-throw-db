@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http.response import Http404
+from rest_framework import status, viewsets, generics, authentication, permissions
 from rest_framework.viewsets import ModelViewSet
 from .models import *
 from .serializers import *
@@ -11,9 +12,21 @@ class CourseViewSet(ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
     http_method_names = ['get']
-
+    permission_classes = [permissions.AllowAny]
 
 class HoleViewSet(ModelViewSet):
     queryset = Hole.objects.all()
     serializer_class = HoleSerializer
     http_method_names = ['get']
+    permission_classes = [permissions.AllowAny]
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = CustomUser.objects.all()
+    serializer_class = CustomUserSerializer
+    http_method_names = ["get"]
+    permission_classes = [permissions.IsAuthenticated]
+
+class CustomUserCreate(generics.CreateAPIView):
+    queryset = CustomUser.objects.all()
+    serializer_class = CustomUserSerializer
+    permission_classes = (permissions.AllowAny,)
