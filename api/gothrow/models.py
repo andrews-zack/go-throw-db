@@ -47,6 +47,3 @@ class UserScores(models.Model):
     user = models.ForeignKey("CustomUser", on_delete=models.PROTECT)
     scores = models.ForeignKey("Scores", on_delete=models.PROTECT)
     
-class CourseHole(models.Model):
-    course = models.ForeignKey("Course", on_delete=models.PROTECT)
-    hole = models.ForeignKey("Hole", on_delete=models.PROTECT)

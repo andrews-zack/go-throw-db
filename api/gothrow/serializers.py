@@ -30,7 +30,7 @@ class CourseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Course
-        fields = ["course_name", "holes", "course_lat", "course_long", "hole_list",]
+        fields = ["id", "course_name", "holes", "course_lat", "course_long", "hole_list",]
 
     def get_hole_list(self, obj):
         course = obj.id
@@ -56,10 +56,3 @@ class HoleSerializer(serializers.ModelSerializer):
         model = Hole
         fields = ["id", "course", "hole_num", "par", "length", "hole_lat", "hole_long",]
 
-
-class CourseHoleSerializer(serializers.ModelSerializer):
-    hole = HoleListingField(queryset=Hole.objects.all(), required=False)
-
-    class Meta:
-        model = CourseHole
-        fields = "__all__"
