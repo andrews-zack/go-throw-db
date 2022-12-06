@@ -8,13 +8,13 @@ from rest_framework.response import Response
 # from rest_framework import filters
 
 
-class CourseViewSet(generics.ListAPIView):
-    # queryset = Course.objects.all()
+class CourseViewSet(ModelViewSet):
+    queryset = Course.objects.all()
     serializer_class = CourseSerializer
-    # http_method_names = ['get']
-    # permission_classes = [permissions.AllowAny]
-    def get_queryset(self):
-        queryset = Course.objects.all()
+    http_method_names = ['get']
+    permission_classes = [permissions.AllowAny]
+    # def get_queryset(self):
+    #     queryset = Course.objects.all()
 
 class HoleViewSet(ModelViewSet):
     queryset = Hole.objects.all()
@@ -26,7 +26,7 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
     http_method_names = ["get"]
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
 class CustomUserCreate(generics.CreateAPIView):
     queryset = CustomUser.objects.all()
