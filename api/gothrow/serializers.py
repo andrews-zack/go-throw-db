@@ -19,14 +19,16 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
 
 class RoundsSerializer(serializers.ModelSerializer):
+    course = CourseListingField(queryset=Course.objects.all())
+    
     class Meta:
         model = Rounds
+        # fields = ["id", "user", "course", "total_score"]
         fields = "__all__"
 
 
 class CourseSerializer(serializers.ModelSerializer):
     hole_list = serializers.SerializerMethodField()
-    # hole_list = HoleListingField(many=True, queryset=Hole.objects.all(), required=False)
 
     class Meta:
         model = Course
@@ -34,7 +36,7 @@ class CourseSerializer(serializers.ModelSerializer):
 
     def get_hole_list(self, obj):
         course = obj.id
-        hole_list = Hole.objects.filter(course=course)
+        hole_list = Hole.objects.filter(course=course).order_by("hole_num")
         course_holes = []
         for item in hole_list:
             course_holes.append({
@@ -48,7 +50,6 @@ class CourseSerializer(serializers.ModelSerializer):
         return course_holes
 
 
-
 class HoleSerializer(serializers.ModelSerializer):
     course = CourseListingField(queryset=Course.objects.all(), required=False)
     
@@ -56,3 +57,8 @@ class HoleSerializer(serializers.ModelSerializer):
         model = Hole
         fields = ["id", "course", "hole_num", "par", "length", "hole_lat", "hole_long",]
 
+
+class ScoresSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Scores
+        fields = ["id", "user", "rounds", "hole", "score"]

@@ -9,6 +9,8 @@ router = routers.SimpleRouter()
 router.register(r'courses', CourseViewSet)
 router.register(r'holes', HoleViewSet)
 router.register(r'users', views.UserViewSet)
+router.register(r'rounds', RoundsViewSet)
+router.register(r'scores', ScoresViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

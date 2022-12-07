@@ -8,7 +8,7 @@ class CustomUser(AbstractUser):
 class Rounds(models.Model):
     user = models.ForeignKey("CustomUser", on_delete=models.PROTECT)
     course = models.ForeignKey("Course", on_delete=models.PROTECT)
-    total_score = models.IntegerField(null=False, blank=True)
+    total_score = models.IntegerField(null=False, default=0, blank=True)
 
 class Course(models.Model):
     course_name = models.CharField(max_length=50, null=False, blank=True, unique=True)
@@ -31,7 +31,7 @@ class Scores(models.Model):
     user = models.ForeignKey("CustomUser", on_delete=models.PROTECT)
     rounds = models.ForeignKey("Rounds", on_delete=models.PROTECT)
     hole = models.ForeignKey("Hole", on_delete=models.PROTECT)
-    score = models.IntegerField(null=False, blank=True)
+    score = models.IntegerField(null=False, default=0, blank=True)
 
 # class RoundScore(models.Model):
 #     rounds = models.ForeignKey("Rounds", on_delete=models.PROTECT)
