@@ -6,8 +6,9 @@ class CustomUser(AbstractUser):
 
 
 class Rounds(models.Model):
-    total_score = models.IntegerField(null=False, blank=True)
+    user = models.ForeignKey("CustomUser", on_delete=models.PROTECT)
     course = models.ForeignKey("Course", on_delete=models.PROTECT)
+    total_score = models.IntegerField(null=False, blank=True)
 
 class Course(models.Model):
     course_name = models.CharField(max_length=50, null=False, blank=True, unique=True)
@@ -26,24 +27,21 @@ class Hole(models.Model):
     hole_lat = models.DecimalField(max_digits=7, decimal_places=5, null=False, blank=True)
     hole_long = models.DecimalField(max_digits=8, decimal_places=5, null=False, blank=True)
 
-    # def __str__(self):
-    #     return {
-    #         self.course,
-    #         self.hole_num,
-    #     }
-
 class Scores(models.Model):
+    user = models.ForeignKey("CustomUser", on_delete=models.PROTECT)
+    rounds = models.ForeignKey("Rounds", on_delete=models.PROTECT)
+    hole = models.ForeignKey("Hole", on_delete=models.PROTECT)
     score = models.IntegerField(null=False, blank=True)
 
-class RoundScore(models.Model):
-    rounds = models.ForeignKey("Rounds", on_delete=models.PROTECT)
-    score = models.ForeignKey("Scores", on_delete=models.PROTECT)
+# class RoundScore(models.Model):
+#     rounds = models.ForeignKey("Rounds", on_delete=models.PROTECT)
+#     score = models.ForeignKey("Scores", on_delete=models.PROTECT)
 
-class HoleScores(models.Model):
-    hole = models.ForeignKey("Hole", on_delete=models.PROTECT)
-    scores = models.ForeignKey("Scores", on_delete=models.PROTECT)
+# class HoleScores(models.Model):
+#     hole = models.ForeignKey("Hole", on_delete=models.PROTECT)
+#     scores = models.ForeignKey("Scores", on_delete=models.PROTECT)
 
-class UserScores(models.Model):
-    user = models.ForeignKey("CustomUser", on_delete=models.PROTECT)
-    scores = models.ForeignKey("Scores", on_delete=models.PROTECT)
+# class UserScores(models.Model):
+#     user = models.ForeignKey("CustomUser", on_delete=models.PROTECT)
+#     scores = models.ForeignKey("Scores", on_delete=models.PROTECT)
     
