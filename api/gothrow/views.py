@@ -40,7 +40,7 @@ class RoundsViewSet(ModelViewSet):
     permission_classes = (permissions.AllowAny,)
 
 class ScoresViewSet(ModelViewSet):
-    queryset = Scores.objects.all()
+    queryset = Scores.objects.all().order_by('rounds__id', 'hole__id')
     serializer_class = ScoresSerializer
     http_method_names = ["get", "post", "put", "patch", "delete"]
     permission_classes = (permissions.AllowAny,)
