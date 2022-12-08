@@ -59,6 +59,7 @@ class HoleSerializer(serializers.ModelSerializer):
 
 
 class ScoresSerializer(serializers.ModelSerializer):
+    score = serializers.IntegerField(required=False)
     class Meta:
         model = Scores
         fields = ["id", "user", "rounds", "hole", "score"]
