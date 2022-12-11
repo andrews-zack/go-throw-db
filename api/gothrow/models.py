@@ -13,6 +13,7 @@ class Rounds(models.Model):
 class Course(models.Model):
     course_name = models.CharField(max_length=50, null=False, blank=True, unique=True)
     holes = models.IntegerField(null=False, blank=False)
+    course_par = models.IntegerField(null=True, blank=True)
     course_lat = models.DecimalField(max_digits=7, decimal_places=5, null=False, blank=True)
     course_long = models.DecimalField(max_digits=8, decimal_places=5, null=False, blank=True)
 
@@ -33,15 +34,4 @@ class Scores(models.Model):
     hole = models.ForeignKey("Hole", on_delete=models.PROTECT)
     score = models.IntegerField(null=False, default=0, blank=True)
 
-# class RoundScore(models.Model):
-#     rounds = models.ForeignKey("Rounds", on_delete=models.PROTECT)
-#     score = models.ForeignKey("Scores", on_delete=models.PROTECT)
 
-# class HoleScores(models.Model):
-#     hole = models.ForeignKey("Hole", on_delete=models.PROTECT)
-#     scores = models.ForeignKey("Scores", on_delete=models.PROTECT)
-
-# class UserScores(models.Model):
-#     user = models.ForeignKey("CustomUser", on_delete=models.PROTECT)
-#     scores = models.ForeignKey("Scores", on_delete=models.PROTECT)
-    

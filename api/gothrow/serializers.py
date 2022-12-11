@@ -32,7 +32,7 @@ class CourseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Course
-        fields = ["id", "course_name", "holes", "course_lat", "course_long", "hole_list",]
+        fields = ["id", "course_name", "holes", "course_par", "course_lat", "course_long", "hole_list",]
 
     def get_hole_list(self, obj):
         course = obj.id
